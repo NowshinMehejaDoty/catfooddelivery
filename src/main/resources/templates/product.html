@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container" style="background: antiquewhite;min-height: 700px" >
+
+    <h2 align="center" style="color: beige;background: black;padding-top: 20px;padding-bottom: 20px;opacity: 0.8;border-radius: 5px" >List of Products</h2>
+    </br>
+    </br>
+    </br>
+
+    <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+
+    <div class="row">
+        <div class="sidenav col-sm-3">
+            <a href="/dashboard">Dashboard</a> <br/>
+            <a href="/foods">Food Category</a> <br/>
+            <a href="/cart">Cart</a> <br/>
+            <a href="/placements">Placements</a> <br/>
+            <a href="/logout">Logout</a> <br/>
+        </div>
+
+        <div class="col-sm-9">
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr th:each="product : ${products}">
+                    <td class="align-middle" th:text="${product.id}"></td>
+                    <td class="align-middle" th:text="${product.food.name}"></td>
+                    <td class="align-middle" th:text="${product.name}"></td>
+                    <td class="align-middle" th:text="${product.price}"></td>
+                    <td class="align-middle"><a th:if="${au.userType == 1}" th:href="@{'/cart/add/' + ${product.id} + '/' + ${product.food.id}}">Add to Cart</a> </td>
+                    <td class="align-middle"><a th:if="${au.userType == 0}" th:href="@{'/product/edit/' + ${product.id}}">Edit</a> </td>
+                </tr>
+
+            </table>
+            <a th:if="${au.userType == 0}" th:href="@{'/add-product/' + ${foodId}}">Add a Product</a>
+        </div>
+    </div>
+</div>
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Numans');
+
+    body{
+        background-image: url('https://images.ctfassets.net/f60q1anpxzid/4CVAq7cQlAtV8F1excEvhf/c266c3fe06b17092e9205dab5df7341e/LT_SEO_PeopleFoodsForCats_Head__1_.jpg?fm=jpg&fl=progressive&q=50&w=1200');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        font-family: 'Numans', sans-serif;
+    }
+</style>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<div class = "container" style="background: antiquewhite;min-height: 700px" >
+    <h2 align="center" style="color: beige;background: black;padding-top: 20px;padding-bottom: 20px;opacity: 0.8;border-radius: 5px">Add a New Food Category</h2>
+    <form action="#" th:action="@{/add-product}" method="post" th:object="${product}">
+        </br>
+        </br>
+        </br>
+        <div class="row">
+            <div class="sidenav col-sm-3">
+                <a href="/dashboard">Dashboard</a> <br/>
+                <a href="/foods">Food Category</a> <br/>
+                <a href="/cart">Cart</a> <br/>
+                <a href="/placements">Placements</a> <br/>
+                <a href="/logout">Logout</a> <br/>
+            </div>
+            <div class="col-sm-9">
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" readonly class="form-control" th:field="*{id}" /><br/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>FoodID</th>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" readonly class="form-control" th:field="*{food.id}" /><br/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" th:field="*{name}" /><br/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" th:field="*{price}" /><br/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <button class="btn btn-primary" type="submit">Add</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Numans');
+
+    body{
+        background-image: url('https://azure.wgp-cdn.co.uk/app-yourcat/posts/untamedcat-review-main.jpg?&format=webp&webp.quality=40&scale=both');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        font-family: 'Numans', sans-serif;
+    }
+
+</style>
+</html>

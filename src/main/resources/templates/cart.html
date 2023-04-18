@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container" style="background: antiquewhite;min-height: 700px">
+    <h2 align="center" style="color: beige;background: black;padding-top: 20px;padding-bottom: 20px;opacity: 0.8;border-radius: 5px">Cart</h2>
+    </br>
+    </br>
+    </br>
+
+    <div class="cart">
+        <table class="table">
+            <tr>
+                <th>Current Cart Total Items</th>
+                <td style="font-size: 1.5em;"><span th:text="${totalItem}"></span></td>
+            </tr>
+            <tr>
+                <th>Current Cart Total</th>
+                <td style="font-size: 1.5em;" ><span th:text="${totalCost}"></span> BDT</td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${cart}">
+        <h2>Item Details</h2>
+        <div class="row">
+            <div class="sidenav col-sm-3">
+                <a href="/dashboard">Dashboard</a> <br/>
+                <a href="/foods">Food Category</a> <br/>
+                <a href="/cart">Cart</a> <br/>
+                <a href="/placements">Placements</a> <br/>
+                <a href="/logout">Logout</a> <br/>
+            </div>
+
+            <div class="col-sm-9">
+        <table class="table">
+
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+            <tr th:each="cd : ${cartDetail}">
+                <td class="align-middle" th:text="${cd.id}"></td>
+                <td class="align-middle" th:text="${cd.food.name}"></td>
+                <td class="align-middle" th:text="${cd.product.name}"></td>
+                <td class="align-middle" th:text="${cd.product.price}"></td>
+                <td class="align-middle"><a th:href="@{'/cart/remove/' + ${cd.product.id}}">Remove</a> </td>
+            </tr>
+        </table>
+        <div>
+            <h3>Proceed for payment? </h3>
+            <a th:href="@{'/payment/' + ${cart.id}}" class="btn btn-info" role="button">Yes</a>
+            <a href="/dashboard" class="btn btn-danger" role="button">No</a>
+        </div>
+    </div>
+</div>
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Numans');
+
+    body{
+        background-image: url('https://images.ctfassets.net/f60q1anpxzid/4CVAq7cQlAtV8F1excEvhf/c266c3fe06b17092e9205dab5df7341e/LT_SEO_PeopleFoodsForCats_Head__1_.jpg?fm=jpg&fl=progressive&q=50&w=1200');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        font-family: 'Numans', sans-serif;
+    }
+</style>
+</html>
